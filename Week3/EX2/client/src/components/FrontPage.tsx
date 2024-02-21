@@ -18,8 +18,6 @@ function FrontPage() {
         <button onClick={() => setWhatAreWeDisplaying('createAdress')}>Create Adress</button>
         <button onClick={() => setWhatAreWeDisplaying('adresses')}>Show Adresses</button>
 
-
-
         {whatAreWeDisplaying === 'people' ? <PersonParent /> : null}
         {whatAreWeDisplaying === 'createPerson' ? <CreatePerson /> : null}
         {whatAreWeDisplaying === 'createAdress' ? <CreateAdress /> : null}

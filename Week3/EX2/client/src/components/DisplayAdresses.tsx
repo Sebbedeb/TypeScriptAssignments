@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
+import PeopleOnAdress from './PeopleOnAdress';
 
 type Address = {
     id: string;
@@ -35,6 +36,7 @@ function DisplayAddresses() {
     fetchPolicy: "network-only"
   });
 
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
@@ -42,18 +44,16 @@ function DisplayAddresses() {
     <div>
       <h2>Addresses</h2>
       {data.adresses.map((address: Address) => (
+        
         <div key={address.id}>
           <h3>{address.street}</h3>
-          <p>{address.city}</p>
-          <p>{address.zip}</p>
+          <p>
+            {address.city}, {address.zip}
+          </p>
           <h4>Persons</h4>
           <ul>
             {address.persons ? (
-              address.persons.map((person) => (
-                <li key={person.email}>
-                  {person.name} - {person.email}
-                </li>
-              ))
+                  <PeopleOnAdress adressId={address.id as string} />
             ) : (
               <li>No persons available</li>
             )}
